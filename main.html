@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Graduation 🎓</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+margin:0;
+font-family:'Poppins',sans-serif;
+background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+color:white;
+text-align:center;
+}
+
+/* JUDUL */
+
+h1 {
+
+font-family:'Pacifico',cursive;
+font-size:42px;
+margin-top:30px;
+
+}
+
+/* GALERI FOTO */
+
+.gallery {
+
+display:grid;
+grid-template-columns: repeat(3,1fr);
+gap:15px;
+max-width:750px;
+margin:auto;
+padding:20px;
+
+}
+
+.gallery img {
+
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+
+opacity:0;
+transform: scale(0.7);
+
+transition: 0.3s;
+
+}
+
+/* MUNCUL SAAT SCROLL */
+
+.show {
+
+animation: zoomMasuk 0.7s forwards;
+
+}
+
+/* GETAR SAAT DISENTUH */
+
+.touch-effect {
+
+animation: getarZoom 0.5s;
+
+}
+
+/* ANIMASI MASUK */
+
+@keyframes zoomMasuk {
+
+0% {
+
+opacity:0;
+transform: scale(0.7);
+
+}
+
+60% {
+
+transform: scale(1.1);
+
+}
+
+100% {
+
+opacity:1;
+transform: scale(1);
+
+}
+
+}
+
+/* ANIMASI GETAR */
+
+@keyframes getarZoom {
+
+0% { transform: scale(1) translateX(0); }
+
+20% { transform: scale(1.1) translateX(-4px); }
+
+40% { transform: scale(1.1) translateX(4px); }
+
+60% { transform: scale(1.1) translateX(-4px); }
+
+80% { transform: scale(1.1) translateX(4px); }
+
+100% { transform: scale(1) translateX(0); }
+
+}
+
+/* TEXT BOX */
+
+.text-box {
+
+max-width:750px;
+margin:auto;
+padding:25px;
+
+opacity:0;
+transform: scale(0.7);
+
+}
+
+.text-box.show {
+
+animation: zoomMasuk 0.7s forwards;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+.gallery {
+
+grid-template-columns: repeat(2,1fr);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- AUDIO -->
+
+<audio id="musik" loop>
+<source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<h1>🎓 Happy Graduation 🎓</h1>
+
+<!-- FOTO -->
+
+<div class="gallery">
+
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
+<img src="foto5.jpg">
+<img src="foto6.jpg">
+
+</div>
+
+<!-- UCAPAN -->
+
+<div class="text-box">
+
+<p>
+
+Selamat graduation ya sayang 🎓✨  
+
+Aku bangga banget sama kamu.  
+Semua usaha dan perjuangan kamu akhirnya sampai di titik ini.  
+
+Bukan hal mudah buat sampai ke hari kelulusan,  
+tapi kamu berhasil buktiin kalau kamu kuat.  
+
+Semoga setelah ini semua mimpi kamu bisa tercapai.  
+
+Aku bangga punya kamu, sayang.  
+Selamat atas kelulusanmu 🎓❤️  
+
+</p>
+
+</div>
+
+<script>
+
+/* LANJUTKAN MUSIK */
+
+var audio = document.getElementById("musik");
+
+window.addEventListener("load", function(){
+
+var waktu = localStorage.getItem("musikTime");
+
+if(waktu){
+
+audio.currentTime = waktu;
+
+}
+
+audio.play();
+
+});
+
+/* UPDATE POSISI MUSIK */
+
+setInterval(function(){
+
+localStorage.setItem(
+"musikTime",
+audio.currentTime
+);
+
+},1000);
+
+/* MUNCUL SAAT SCROLL */
+
+const elements = document.querySelectorAll(
+".gallery img, .text-box"
+);
+
+function cekScroll(){
+
+const tinggi = window.innerHeight;
+
+elements.forEach(el => {
+
+const posisi = el.getBoundingClientRect().top;
+
+if(posisi < tinggi - 50){
+
+el.classList.add("show");
+
+}
+
+});
+
+}
+
+window.addEventListener("scroll", cekScroll);
+
+cekScroll();
+
+/* GETAR SAAT DISENTUH */
+
+elements.forEach(el => {
+
+el.addEventListener("click", () => {
+
+el.classList.add("touch-effect");
+
+setTimeout(() => {
+
+el.classList.remove("touch-effect");
+
+}, 500);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
