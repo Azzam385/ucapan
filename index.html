@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>It is For you</title>
+
+    <!-- FONT BAGUS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+            color: white;
+            text-align: center;
+        }
+
+        /* HEADER */
+
+        header {
+            padding: 30px 20px;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+        }
+
+        .counter {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* GALERI FOTO */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+            max-width: 750px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* FOTO DEFAULT */
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+
+            /* animasi awal */
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* FOTO SAAT MUNCUL */
+
+        .gallery img.muncul {
+
+            animation: getarMasuk 0.7s forwards;
+
+        }
+
+        /* ANIMASI GETAR SCROLL */
+
+        @keyframes getarMasuk {
+
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            30% {
+                transform: translate(-5px,5px);
+            }
+
+            50% {
+                transform: translate(5px,-5px);
+            }
+
+            70% {
+                transform: translate(-3px,-3px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(0,0);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:600px) {
+
+            .gallery {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+        }
+
+        /* TEKS */
+
+        .text-box {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* TOMBOL WHATSAPP */
+
+        .wa-btn {
+
+            display: inline-block;
+            margin: 25px;
+            padding: 14px 28px;
+            font-size: 16px;
+            background: #25D366;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+
+        }
+
+        .wa-btn:hover {
+
+            background: #1ebe5d;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Happy graduation monica</h1>
+
+        <div class="counter" id="hari"></div>
+
+    </header>
+
+    <!-- GALERI FOTO -->
+
+    <div class="gallery">
+
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+        <img src="foto5.jpg">
+        <img src="foto6.jpg">
+
+    </div>
+
+    <!-- TEKS PANJANG -->
+
+    <div class="text-box">
+
+        <p>
+
+            Hai Monica ❤️
+
+            Sejak tanggal 07 Juni 2025, hidup aku terasa berbeda.
+            Hari-hari yang dulu biasa saja, sekarang jadi lebih berwarna sejak kamu hadir.
+
+            Kadang kamu lucu, kadang ngeselin,
+            kadang juga bikin aku mikir keras,
+            tapi semua itu justru bikin hidup aku terasa lebih hidup.
+
+            Aku sadar aku bukan orang yang sempurna.
+            Aku juga sering salah dan kadang bikin kamu kesal.
+            Tapi satu hal yang selalu aku usahakan adalah tetap peduli dan tetap bertahan.
+
+            Terima kasih sudah ada sampai sejauh ini.
+            Terima kasih sudah jadi bagian dari hidup aku.
+
+            Semoga ke depan kita masih bisa ketawa bareng,
+            masih bisa saling ganggu,
+            dan masih bisa bikin kenangan baru yang lebih banyak lagi.
+
+            Aku sayang kamu, Monica ❤️
+
+        </p>
+
+    </div>
+
+    <!-- TOMBOL WHATSAPP -->
+
+    <a
+        class="wa-btn"
+        href="https://wa.me/6283173468064?text=makasihhh synkkk😊"
+        target="_blank">
+
+        Kirim ke WhatsApp 💬
+
+    </a>
+
+    <script>
+
+        /* FOTO GETAR SAAT SCROLL */
+
+        const fotoScroll = document.querySelectorAll(".gallery img");
+
+        function cekScroll() {
+
+            const tinggiLayar = window.innerHeight;
+
+            fotoScroll.forEach(function(foto) {
+
+                const posisi = foto.getBoundingClientRect().top;
+
+                if (posisi < tinggiLayar - 50) {
+
+                    foto.classList.add("muncul");
+
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", cekScroll);
+
+        /* jalan pertama */
+
+        cekScroll();
+
+    </script>
+
+</body>
+</html>
